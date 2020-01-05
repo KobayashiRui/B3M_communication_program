@@ -134,12 +134,12 @@ int main(void)
       txdata[3]=id;     //4 ID
       txdata[4]=deg_l;  //5 POS_L
       txdata[5]=deg_h;  //6 POS_H
-      txdata[6]=id2;     //4 ID2
-      txdata[7]=deg2_l;  //5 POS2_L
-      txdata[8]=deg2_h;  //6 POS2_H
-      txdata[9]=time_l; //7 TIME_L
-      txdata[10]=time_h; //8 TIME_H
-      txdata[11]=sum;    //9 SUM
+      txdata[6]=id2;     //7 ID2
+      txdata[7]=deg2_l;  //8 POS2_L
+      txdata[8]=deg2_h;  //9 POS2_H
+      txdata[9]=time_l; //10TIME_L
+      txdata[10]=time_h; //11 TIME_H
+      txdata[11]=sum;    //12 SUM
       HAL_Delay(0.03);
 
   }
@@ -152,18 +152,15 @@ int main(void)
        txdata[1]=0x04;   //2 COMMAND
        txdata[2]=0x00;   //3 OPTION
        txdata[3]=id;     //4 ID
-       txdata[4]=data;  //DATA
-       txdata[5]=adress;  //ADRESS
-       txdata[6]=0x01; //COUNT
-       txdata[7]=sum;    //9 SUM
+       txdata[4]=data;  //5 DATA
+       txdata[5]=adress;  //6 ADRESS
+       txdata[6]=0x01; //7 COUNT
+       txdata[7]=sum;    //8 SUM
        HAL_UART_Transmit(&huart6, txdata, 8, 0xFFFF);
-       HAL_Delay(0.03);
        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-
+       HAL_Delay(1);
     }
 
-	  write(0xFF,0x00,0x28);
-	  write(0xFF,0x01,0x29);
 
 
   /* USER CODE END 2 */
@@ -175,123 +172,22 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  write(0xFF,0x00,0x28);
-//	  write(0xFF,0x01,0x29);
+	  write(0xFF,0x00,0x28);
+	  write(0xFF,0x01,0x29);
 
 
 	  pos_multi(2,7000,8,-24000,2000);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
 	  HAL_UART_Transmit(&huart6, txdata, 12, 0xFFFF);
-	  HAL_Delay(100);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
 	  HAL_Delay(2000);
 
 	  pos_multi(2,0,8,-15000,2000);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
 	  HAL_UART_Transmit(&huart6, txdata, 12, 0xFFFF);
-	  HAL_Delay(100);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
 	  HAL_Delay(2000);
 
-
-/*	  pos(2,7000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata, 9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(2,0,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(3,0,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(1,0,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(1,9000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(3,9000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);*/
-
-
-
-
-/*	  pos(8,-24000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata, 9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(8,-15000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);
-
-	  pos(9,0,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-
-	  pos(7,0,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(1000);
-
-	  pos(8,3000,3000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(3000);
-
-	  pos(8,-15000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
- 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
- 	  HAL_Delay(1000);
-
-	  pos(7,-9000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-
-	  pos(9,9000,2000);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-	  HAL_UART_Transmit(&huart6, txdata,9, 0xFFFF);
-	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-	  HAL_Delay(2000);*/
 
   }
   /* USER CODE END 3 */
