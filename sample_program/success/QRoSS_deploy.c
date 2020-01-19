@@ -272,7 +272,7 @@ int main(void)
 	  write(0xFF,0x00,0x28);
 	  write(0xFF,0x01,0x29);
 
-//右足格?��?
+//足格納
 	  pos(8,-15000,3000);
  	  HAL_Delay(3000);
 
